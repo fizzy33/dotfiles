@@ -4,92 +4,90 @@ let
 
   system = builtins.currentSystem;
 
-#  sources = import /Users/glen/code/accur8/sync/nix/sources.nix;
+  sources = import ./nix/sources.nix;
 
-#  nixpkgs = import sources."nixpkgs-unstable" { inherit system; };
+  nixpkgs = import sources.nixpkgs-unstable { inherit system; };
 
-#  a8-scripts = import sources.a8-scripts { inherit system nixpkgs; };
-
-  my-java = pkgs.jdk11.overrideAttrs (oldAttrs: rec {
-    postFixup = (oldAttrs.postFixup or "") + ''
-       rm $out/share/man
-    '';
-  });
-
-  my-scala = pkgs.scala.override { jre = my-java; };
-  my-ammonite = pkgs.ammonite_2_13.override { jre = my-java; };
-  
-  my-sbt = pkgs.sbt.override { jre = my-java; };
-
-  my-python3-packages = python-packages: with python-packages; [
-    munch
-    setuptools
-  ]; 
-
-  my-python3 = pkgs.python3.withPackages my-python3-packages;
+  a8-scripts = import sources.a8-scripts { inherit system nixpkgs; };
 
   runitor = 
-    pkgs.buildGoModule rec {
+    nixpkgs.buildGoModule rec {
       pname = "runitor";
-      version = "0.8.0";
+      version = "1.2.0";
       vendorSha256 = null;
-      src = pkgs.fetchurl {
+      src = nixpkgs.fetchurl {
         url = "https://github.com/bdd/runitor/archive/refs/tags/v1.2.0.tar.gz";
-        sha256 = "71489ba9b0103f16080495ea9671dd86638c338faf5cb0491f93f5d5128006c3";
+        sha256 = "03a2ayxrfdjbq7mcw87cqg470gg7bbwb34cij0wrbr4vafadkf4h";
       };
     };
 
-  # a8-scripts = 
-  #   stdenv.mkDerivation {
-  #     src = "a8-scripts";
-  #   };
+  pgbackrest = 
+    nixpkgs.stdenv.mkDerivation rec {
+      pname = "pgbackrest";
+      version = "2.41";
 
-  linuxOnly = lib.strings.hasInfix "linux" builtins.currentSystem;
-  everythingButM1Mac = builtins.currentSystem != "aarch64-darwin";
+      src = nixpkgs.fetchFromGitHub {
+        owner = "pgbackrest";
+        repo = "pgbackrest";
+        rev = "release/${version}";
+        sha256 = "sha256-AaFctLXhzq3Wk+KjxskxazpNEX7UAmXeiJxhYXYwksk=";
+      };
 
-in 
+      nativeBuildInputs = [ nixpkgs.pkg-config ];
+      buildInputs = [ nixpkgs.postgresql nixpkgs.openssl nixpkgs.lz4 nixpkgs.bzip2 nixpkgs.libxml2 nixpkgs.zlib nixpkgs.zstd nixpkgs.libyaml ];
+
+      postUnpack = ''
+        sourceRoot+=/src
+      '';
+
+      meta = with lib; {
+        description = "Reliable PostgreSQL backup & restore";
+        homepage = "https://pgbackrest.org/";
+        changelog = "https://github.com/pgbackrest/pgbackrest/releases";
+        license = licenses.mit;
+        maintainers = with maintainers; [ zaninime ];
+      };
+    };
+
+in
 {
 
-  # if builtins.pathExists ./true.nix then import ./true.nix else true;
-
   programs.home-manager.enable = true;
+
+  # The home-manager manual is at:
+  #
+  #   https://rycee.gitlab.io/home-manager/release-notes.html
+  #
+  # Configuration options are documented at:
+  #
+  #   https://rycee.gitlab.io/home-manager/options.html
+
+  # Home Manager needs a bit of information about you and the
+  # paths it should manage.
+  #
+  # You need to change these to match your username and home directory
+  # path:
+
 
   home.username = builtins.getEnv "USER";
   home.homeDirectory = builtins.getEnv "HOME";
 
+  # If you use non-standard XDG locations, set these options to the
+  # appropriate paths:
+  #
+  # xdg.cacheHome
+  # xdg.configHome
+  # xdg.dataHome
+
+  # This value determines the Home Manager release that your
+  # configuration is compatible with. This helps avoid breakage
+  # when a new Home Manager release introduces backwards
+  # incompatible changes.
+  #
+  # You can update Home Manager without changing this value. See
+  # the Home Manager release notes for a list of state version
+  # changes in each release.
   home.stateVersion = "22.11";
-
-
-  programs.fish = {
-    enable = true;
-
-    plugins = [
-      {
-        name = "bass";
-        src = pkgs.fetchFromGitHub {
-          owner = "edc";
-          repo = "bass";
-          rev = "50eba266b0d8a952c7230fca1114cbc9fbbdfbd4";
-          sha256 = "0ppmajynpb9l58xbrcnbp41b66g7p0c9l2nlsvyjwk6d16g4p4gy";
-        };
-      }
-
-      {
-        name = "foreign-env";
-        src = pkgs.fetchFromGitHub {
-          owner = "oh-my-fish";
-          repo = "plugin-foreign-env";
-          rev = "dddd9213272a0ab848d474d0cbde12ad034e65bc";
-          sha256 = "00xqlyl3lffc5l0viin1nyp819wf81fncqyz87jx8ljjdhilmgbs";
-        };
-      }
-    ];
-
-    shellAliases = {
-      bobbob = "exa";
-    };
-
-  };
 
   programs.direnv.enable = true;
   programs.direnv.nix-direnv.enable = true;
@@ -100,88 +98,109 @@ in
   programs.bash.enable = true;
   programs.zsh.enable = true;
 
-  programs.go.enable = true;
+  programs.fish = {
+    enable = true;
 
-  services.lorri.enable = linuxOnly;
+    plugins = [
+      {
+        name = "bass";
+        src = nixpkgs.fetchFromGitHub {
+          owner = "edc";
+          repo = "bass";
+          rev = "50eba266b0d8a952c7230fca1114cbc9fbbdfbd4";
+          sha256 = "0ppmajynpb9l58xbrcnbp41b66g7p0c9l2nlsvyjwk6d16g4p4gy";
+        };
+      }
+
+      {
+        name = "foreign-env";
+        src = nixpkgs.fetchFromGitHub {
+          owner = "oh-my-fish";
+          repo = "plugin-foreign-env";
+          rev = "dddd9213272a0ab848d474d0cbde12ad034e65bc";
+          sha256 = "00xqlyl3lffc5l0viin1nyp819wf81fncqyz87jx8ljjdhilmgbs";
+        };
+      }
+    ];
+    shellAliases = {
+      cp    = "cp -iv";
+      lx    = "exa --long --git --group --all --sort=.name";
+      less  = "less -FSRXc";
+      ll    = "ls -FGlAhp";
+      lsd   = "ls -FGlAhpd";  #for use with find like `lsd (find .)` 
+      mkdir = "mkdir -pv";
+      mv    = "mv -iv";
+      xt    = "exa --long --git --group --tree";
+      xl    = "exa --long --git --group --all --sort=.name --sort=type";
+      which = "which -a";
+    };
+  };
+
 
   home.packages = [
-    # a8-scripts.a8-scripts
-    my-ammonite
-#    pkgs.activemq
-    pkgs.awscli
-    # pkgs.bloop
-    pkgs.bottom
-    pkgs.certbot-full
-    pkgs.chezmoi
-#    pkgs.python310Packages.certbot-dns-route53
-    pkgs.curl
-#   pkgs.diffoscope    
-    pkgs.direnv
-    pkgs.drone-cli
-    pkgs.exa  
-    pkgs.fish
-    pkgs.git
-    pkgs.git-crypt
-    pkgs.gnupg
-    pkgs.graalvm11
-#    pkgs.haxe_4_0
-    pkgs.htop
-    pkgs.httping
-    pkgs.iftop
-    pkgs.inetutils
-    pkgs.jq
-#    my-java
-#    pkgs.ipython
-    pkgs.lf
-    pkgs.linode-cli
-    pkgs.micro
-    pkgs.mosh
-    pkgs.mtr
-    pkgs.nano
-    pkgs.ncdu
-    pkgs.ncftp
-    pkgs.niv
-    pkgs.nnn
-    (pkgs.pass.withExtensions (ext: with ext; [pkgs.passExtensions.pass-import])) 
-#    pkgs.pgcli
-    pkgs.powerline-go
-    pkgs.pstree
-    pkgs.pv
-    my-python3
-    pkgs.ripgrep
-    pkgs.rsync
-#    pkgs.rsnapshot
-    pkgs.s3cmd
-    pkgs.s4cmd
-    pkgs.mypy
-    pkgs.runitor
-    my-scala
-#    my-sbt
-    pkgs.silver-searcher
-    pkgs.stack
-    pkgs.tea
-    pkgs.tmux
-    pkgs.websocat
-    pkgs.wget
-    pkgs.xz
-    pkgs.zsh
-#    my-scala
-  ] ++ 
-    (if linuxOnly then 
-       [
-         pkgs.byobu
-#        pkgs.tcping
-       ] 
-     else   
-       []
-    ) ++
-    (if everythingButM1Mac then
-       [
-         pkgs.cached-nix-shell
-       ]
-     else
-       []
-    )
-  ;
+    a8-scripts.a8-scripts
+    nixpkgs.ammonite
+    # my-ammonite
+    # nixpkgs.activemq
+    nixpkgs.awscli
+    nixpkgs.bottom
+    nixpkgs.cached-nix-shell
+    nixpkgs.chezmoi
+    nixpkgs.curl
+    # nixpkgs.diffoscope    
+    nixpkgs.direnv
+    nixpkgs.drone-cli
+    nixpkgs.exa  
+    nixpkgs.fish
+    nixpkgs.git
+    nixpkgs.git-crypt
+    nixpkgs.gnupg
+    # nixpkgs.haxe_4_0
+    nixpkgs.htop
+    nixpkgs.httping
+    nixpkgs.iftop
+    nixpkgs.jdk11
+    # this clashes with nettools
+    # nixpkgs.inetutils
+    nixpkgs.jq
+    # my-java
+    # nixpkgs.ipython
+    nixpkgs.lf
+    nixpkgs.mc
+    nixpkgs.micro
+    nixpkgs.mtr
+    nixpkgs.mypy
+    nixpkgs.nano
+    nixpkgs.ncdu
+    nixpkgs.ncftp
+    nixpkgs.nettools
+    nixpkgs.niv
+    nixpkgs.nnn
+    pgbackrest
+    nixpkgs.pgcli
+    nixpkgs.powerline-go
+    nixpkgs.pstree
+    nixpkgs.pv
+    # my-python3
+    nixpkgs.ripgrep
+    runitor
+    nixpkgs.rsnapshot
+    nixpkgs.rsync
+    nixpkgs.s3cmd
+    nixpkgs.s4cmd
+    # my-scala
+    # my-sbt
+    nixpkgs.silver-searcher
+    nixpkgs.tea
+    nixpkgs.tmux
+    nixpkgs.websocat
+    nixpkgs.wget
+    # nixpkgs.wkhtmltopdf
+    nixpkgs.xz
+    nixpkgs.zsh
+    # my-scala
+    # nixpkgs.byobu
+    # nixpkgs.tcping
+  ];
 
 }

@@ -1,0 +1,50 @@
+{
+    "a8-scripts": {
+        "branch": "master",
+        "description": null,
+        "homepage": null,
+        "owner": "fizzy33",
+        "repo": "a8-scripts",
+        "rev": "f7ce13ff15fda338c88c61788169beefcc723aa4",
+        "sha256": "01qh3cp7r24aygdpdcp0bn5336bzf594jkpblkrchb0iqiwnpy30",
+        "type": "tarball",
+        "url": "https://github.com/fizzy33/a8-scripts/archive/f7ce13ff15fda338c88c61788169beefcc723aa4.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "home-manager": {
+        "branch": "master",
+        "description": "Manage a user environment using Nix",
+        "homepage": "https://rycee.gitlab.io/home-manager/",
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "rev": "2af0d07678fc15612345e0dd55337550dcf6465f",
+        "sha256": "0x86n44x1w6n4ma98fh1y0imzgyw8302436ld7wjr77m2g1b87yz",
+        "type": "tarball",
+        "url": "https://github.com/nix-community/home-manager/archive/2af0d07678fc15612345e0dd55337550dcf6465f.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "niv": {
+        "branch": "master",
+        "description": "Easy dependency management for Nix projects",
+        "homepage": "https://github.com/nmattia/niv",
+        "owner": "nmattia",
+        "repo": "niv",
+        "rev": "351d8bc316bf901a81885bab5f52687ec8ccab6e",
+        "sha256": "1yzhz7ihkh6p2sxhp3amqfbmm2yqzaadqqii1xijymvl8alw5rrr",
+        "type": "tarball",
+        "url": "https://github.com/nmattia/niv/archive/351d8bc316bf901a81885bab5f52687ec8ccab6e.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "nixpkgs-unstable": {
+        "branch": "nixpkgs-unstable",
+        "description": "Nix Packages collection",
+        "homepage": "",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "a5f661b80e4c163510a5013b585a040a5c7ef55e",
+        "sha256": "0v0f5h31iqmcx61nylhn111j7r56m8lx04xllh0p4d13k2gl0hc5",
+        "type": "tarball",
+        "url": "https://github.com/nixos/nixpkgs/archive/a5f661b80e4c163510a5013b585a040a5c7ef55e.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    }
+}
