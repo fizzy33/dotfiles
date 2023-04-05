@@ -133,6 +133,7 @@ in
       xt    = "exa --long --git --group --tree";
       xl    = "exa --long --git --group --all --sort=.name --sort=type";
       which = "which -a";
+      bi    = "echo bip";
     };
   };
 
