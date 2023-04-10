@@ -187,7 +187,6 @@ in
     # my-python3
     nixpkgs.ripgrep
     runitor
-    nixpkgs.rsnapshot
     nixpkgs.rsync
     nixpkgs.s3cmd
     nixpkgs.s4cmd
@@ -207,7 +206,8 @@ in
   ] ++
     (if everythingButM1Mac then
        [
-         pkgs.cached-nix-shell
+         nixpkgs.cached-nix-shell
+         nixpkgs.rsnapshot
        ]
      else
        []
