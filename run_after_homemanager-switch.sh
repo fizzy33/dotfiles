@@ -1,6 +1,6 @@
 #!/bin/sh
 
-cd ~/.config/nixpkgs
+cd ~/.config/home-manager
 
 export PATH=$PATH:/nix/var/nix/profiles/default/bin/
 

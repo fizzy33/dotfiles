@@ -148,7 +148,7 @@ in
     # nixpkgs.activemq
     nixpkgs.awscli
     nixpkgs.bottom
-    nixpkgs.chezmoi
+#    nixpkgs.chezmoi
     nixpkgs.curl
     # nixpkgs.diffoscope    
     nixpkgs.direnv
