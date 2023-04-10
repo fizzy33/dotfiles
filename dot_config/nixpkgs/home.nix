@@ -49,6 +49,9 @@ let
       };
     };
 
+  linuxOnly = lib.strings.hasInfix "linux" builtins.currentSystem;
+  everythingButM1Mac = builtins.currentSystem != "aarch64-darwin";
+
 in
 {
 
@@ -145,7 +148,6 @@ in
     # nixpkgs.activemq
     nixpkgs.awscli
     nixpkgs.bottom
-    nixpkgs.cached-nix-shell
     nixpkgs.chezmoi
     nixpkgs.curl
     # nixpkgs.diffoscope    
@@ -202,6 +204,14 @@ in
     # my-scala
     # nixpkgs.byobu
     # nixpkgs.tcping
-  ];
+  ] ++
+    (if everythingButM1Mac then
+       [
+         pkgs.cached-nix-shell
+       ]
+     else
+       []
+    )
+  ;
 
 }
