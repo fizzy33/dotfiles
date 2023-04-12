@@ -99,6 +99,9 @@ in
   # programs.direnv.nix-direnv.enableFlakes = true;
 
   programs.atuin.enable = true;
+
+  programs.atuin.flags = [ "--disable-up-arrow" ];
+
   programs.powerline-go.enable = true;
 
   programs.bash.enable = true;
