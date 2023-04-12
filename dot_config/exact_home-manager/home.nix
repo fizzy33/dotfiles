@@ -98,6 +98,9 @@ in
   # optional for nix flakes support in home-manager 21.11, not required in home-manager unstable or 22.05
   # programs.direnv.nix-direnv.enableFlakes = true;
 
+  programs.atuin.enable = true;
+  programs.powerline-go.enable = true;
+
   programs.bash.enable = true;
   programs.zsh.enable = true;
 
@@ -127,6 +130,7 @@ in
     ];
     shellAliases = {
       cp    = "cp -iv";
+      ls    = "exa --long --git --group --all --sort=.name";
       lx    = "exa --long --git --group --all --sort=.name";
       less  = "less -FSRXc";
       ll    = "ls -FGlAhp";
