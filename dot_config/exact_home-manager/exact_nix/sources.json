@@ -5,10 +5,10 @@
         "homepage": null,
         "owner": "fizzy33",
         "repo": "a8-scripts",
-        "rev": "bcef05a906dade2e07e0444a0826e05d9101a4b6",
-        "sha256": "17waqfk0diwxwafs9cr5sky8bjb613kzn2r93s9346yq1p5lp1rf",
+        "rev": "09589c7de23e3f5141e3d339c249654e0a86764a",
+        "sha256": "1mwycyz4jbhz4qacgmql16zmxmcyy6ghx6rs4r5fvq068vc0s9jd",
         "type": "tarball",
-        "url": "https://github.com/fizzy33/a8-scripts/archive/bcef05a906dade2e07e0444a0826e05d9101a4b6.tar.gz",
+        "url": "https://github.com/fizzy33/a8-scripts/archive/09589c7de23e3f5141e3d339c249654e0a86764a.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "home-manager": {
@@ -41,10 +41,10 @@
         "homepage": "",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "8670e496ffd093b60e74e7fa53526aa5920d09eb",
-        "sha256": "1iqhx176jarz5jfm20l2f8jcnllgxaw5cq6x332hi57pjkif3675",
+        "rev": "44f30edf5661d86fb3a95841c35127f3d0ea8b0f",
+        "sha256": "0xxcbg2z1vp7rdzgj3jhhy195xyg2n03dxq07x82wnad9zm6a9k7",
         "type": "tarball",
-        "url": "https://github.com/nixos/nixpkgs/archive/8670e496ffd093b60e74e7fa53526aa5920d09eb.tar.gz",
+        "url": "https://github.com/nixos/nixpkgs/archive/44f30edf5661d86fb3a95841c35127f3d0ea8b0f.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     }
 }
