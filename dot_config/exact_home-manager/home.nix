@@ -117,7 +117,7 @@ in
 
   programs.atuin.flags = [ "--disable-up-arrow" ];
 
-  programs.powerline-go.enable = true;
+  # programs.powerline-go.enable = true;
 
   programs.bash.enable = true;
   programs.zsh.enable = true;
