@@ -55,6 +55,21 @@ let
 in
 {
 
+  programs.starship = {
+    enable = true;
+    # Configuration written to ~/.config/starship.toml
+    settings = {
+      # add_newline = false;
+
+      # character = {
+      #   success_symbol = "[➜](bold green)";
+      #   error_symbol = "[➜](bold red)";
+      # };
+
+      # package.disabled = true;
+    };
+  };
+
   programs.home-manager.enable = true;
 
   # The home-manager manual is at:
@@ -188,7 +203,7 @@ in
     nixpkgs.nnn
     pgbackrest
     nixpkgs.pgcli
-    nixpkgs.powerline-go
+    # nixpkgs.powerline-go
     nixpkgs.pstree
     nixpkgs.pv
     # my-python3
@@ -197,6 +212,7 @@ in
     nixpkgs.rsync
     nixpkgs.s3cmd
     nixpkgs.s4cmd
+    nixpkgs.starship
     # my-scala
     # my-sbt
     nixpkgs.silver-searcher
