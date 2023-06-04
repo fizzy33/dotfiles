@@ -1,2 +1,2 @@
 
-starship init fish | source
+~/.nix-profile/bin/starship init fish | source
