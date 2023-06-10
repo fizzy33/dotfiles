@@ -155,7 +155,7 @@ in
       lsd   = "ls -FGlAhpd";  #for use with find like `lsd (find .)` 
       mkdir = "mkdir -pv";
       mv    = "mv -iv";
-      xt    = "exa --long --git --group --tree";
+      xt    = "exa --long --git --group --all --tree";
       xl    = "exa --long --git --group --all --sort=.name --sort=type";
       which = "which -a";
       bip   = "echo bip";
