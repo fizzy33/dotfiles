@@ -5,10 +5,17 @@
         "homepage": null,
         "owner": "fizzy33",
         "repo": "a8-scripts",
+<<<<<<< Updated upstream
         "rev": "8088fe116c16d6564077eb8f72a35ce57490d27b",
         "sha256": "090k6h8xdkkwlz3cj3wbibnpgj2i73nhg300j68pa7084yz8cp30",
         "type": "tarball",
         "url": "https://github.com/fizzy33/a8-scripts/archive/8088fe116c16d6564077eb8f72a35ce57490d27b.tar.gz",
+=======
+        "rev": "879c5246e9917fa7fbae4b4562e1a83cc32c16b0",
+        "sha256": "0s9ybrby08v92n28hdbgrrw0c1myqlrgjnyjii986virc2k0109r",
+        "type": "tarball",
+        "url": "https://github.com/fizzy33/a8-scripts/archive/879c5246e9917fa7fbae4b4562e1a83cc32c16b0.tar.gz",
+>>>>>>> Stashed changes
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "home-manager": {
