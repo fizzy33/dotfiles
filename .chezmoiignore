@@ -1,0 +1,12 @@
+
+README.md
+
+LICENSE
+
+{{- if eq .chezmoi.username "root" }}
+
+.config/home-manager
+.config/home-manager/*
+.config/home-manager/**/*
+
+{{- end }}
