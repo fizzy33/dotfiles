@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ $USER != "root" ]; then
+if [ $USER == "root" ]; then
     /home/dev/.nix-profile/bin/mirror-home-manager-profile.py --fource --source /home/dev --target ~
 else
     cd ~/.config/home-manager
