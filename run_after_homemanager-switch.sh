@@ -1,7 +1,8 @@
 #!/bin/bash
 
 if [ $USER == "root" ]; then
-    /home/dev/.nix-profile/bin/mirror-home-manager-profile.py --fource --source /home/dev --target ~ run
+    /home/dev/.nix-profile/bin/link-nix-tools
+    /home/dev/.nix-profile/bin/mirror-home-manager-profile.py run --force --source /home/dev --target ~
 else
     cd ~/.config/home-manager
 
