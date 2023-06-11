@@ -1,8 +1,7 @@
 #!/bin/bash
 
 if [ $USER == "root" ]; then
-    echo boom
-    #/home/dev/.nix-profile/bin/mirror-home-manager-profile.py --fource --source /home/dev --target ~
+    /home/dev/.nix-profile/bin/mirror-home-manager-profile.py --fource --source /home/dev --target ~ run
 else
     cd ~/.config/home-manager
 
