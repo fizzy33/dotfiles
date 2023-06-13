@@ -12,7 +12,7 @@ if [ $USER == "root" ]; then
     fi
     sudo -u homemanager chezmoi update
     ~homemanager/.nix-profile/bin/mirror-home-manager-profile.py run --force --source ~homemanager --target ~
-    ~/.nix-profile/bin/link-nix-tools
+    ~/.nix-profile/bin/link-nix-tools run
 else
     cd ~/.config/home-manager
 
