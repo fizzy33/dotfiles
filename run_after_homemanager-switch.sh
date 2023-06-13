@@ -11,7 +11,7 @@ if [ $USER == "root" ]; then
         sudo -u homemanager chezmoi init https://fizzy33@github.com/fizzy33/dotfiles
     fi
     sudo -u homemanager chezmoi update
-    ~/homemanager/.nix-profile/bin/mirror-home-manager-profile.py run --force --source ~homemanager --target ~
+    ~homemanager/.nix-profile/bin/mirror-home-manager-profile.py run --force --source ~homemanager --target ~
     ~/.nix-profile/bin/link-nix-tools
 else
     cd ~/.config/home-manager
