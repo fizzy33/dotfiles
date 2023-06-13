@@ -1,8 +1,11 @@
 #!/bin/bash
 
+set -e
+
 if [ $USER == "root" ]; then
-    /home/dev/.nix-profile/bin/link-nix-tools
-    /home/dev/.nix-profile/bin/mirror-home-manager-profile.py run --force --source /home/dev --target ~
+    sudo -u homemanager chezmoi update
+    /home/dev/.nix-profile/bin/mirror-home-manager-profile.py run --force --source /home/homemanager --target ~
+    ~/.nix-profile/bin/link-nix-tools
 else
     cd ~/.config/home-manager
 
