@@ -9,11 +9,11 @@ if [ $USER == "root" ]; then
     else
         echo "creating homemanager user"
         adduser --disabled-password --gecos "user for canonical homemanager setup" homemanager
-        sudo -u homemanager chezmoi init https://fizzy33@github.com/fizzy33/dotfiles
+        sudo -u homemanager -i chezmoi init https://fizzy33@github.com/fizzy33/dotfiles
     fi
     
     echo "running chezmoi update on homemanager"
-    sudo -u homemanager chezmoi update
+    sudo -u homemanager -i chezmoi update
 
     echo "linking homemanager home into root"
     ~homemanager/.nix-profile/bin/mirror-home-manager-profile.py run --force --source ~homemanager --target ~
