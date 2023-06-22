@@ -15,11 +15,17 @@ if [ $USER == "root" ]; then
     echo "running chezmoi update on homemanager"
     sudo -u homemanager -i chezmoi update
 
+    /bin/ls -lap
+
     echo "linking homemanager home into root"
     ~homemanager/.nix-profile/bin/mirror-home-manager-profile.py run --force --source ~homemanager --target ~
 
+    /bin/ls -lap
+
     echo "linking tools from nix store into /usr/local/bin"
     ~homemanager/.nix-profile/bin/link-nix-tools run
+
+    /bin/ls -lap
 
 else
     cd ~/.config/home-manager
