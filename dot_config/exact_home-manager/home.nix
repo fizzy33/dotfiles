@@ -218,6 +218,7 @@ in
     nixpkgs.silver-searcher
     nixpkgs.tea
     nixpkgs.tmux
+    nixpkgs.unzip
     nixpkgs.websocat
     nixpkgs.wget
     # nixpkgs.wkhtmltopdf
