@@ -5,10 +5,10 @@
         "homepage": null,
         "owner": "fizzy33",
         "repo": "a8-scripts",
-        "rev": "a1d6080c9d3a35997bba2a30202841e89beeed16",
-        "sha256": "125q441z99l58faysa4jkj4ssa36i52wrjp852fm4jww802p14b8",
+        "rev": "dfe18430ec55ec9dd9cf309c7cf8e50f07065542",
+        "sha256": "0qbgm0d04i3qf1k5zsw74zk0z7lx6zlnhd4fz5g47wzz1z03cac2",
         "type": "tarball",
-        "url": "https://github.com/fizzy33/a8-scripts/archive/a1d6080c9d3a35997bba2a30202841e89beeed16.tar.gz",
+        "url": "https://github.com/fizzy33/a8-scripts/archive/dfe18430ec55ec9dd9cf309c7cf8e50f07065542.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "home-manager": {
