@@ -148,17 +148,16 @@ in
     ];
     shellAliases = {
       cp    = "cp -iv";
-      ls    = "exa --long --classify --git --group --all --sort=.name";
-      lx    = "exa --long --classify --git --group --all --sort=.name";
+      ls    = "eza --long --classify --git --group --all --sort=.name";
+      lx    = "eza --long --classify --git --group --all --sort=.name";
       less  = "less -FSRXc";
-      ll    = "exa -FGlAh";
-      lsd   = "exa -FGlAhd";  #for use with find like `lsd (find .)` 
+      ll    = "eza -FGlAh";
+      lsd   = "eza -FGlAhd";  #for use with find like `lsd (find .)` 
       mkdir = "mkdir -pv";
       mv    = "mv -iv";
-      xt    = "exa --long --git --group --tree";
-      xl    = "exa --long --git --group --all --sort=.name --sort=type";
+      xt    = "eza --long --git --group --tree";
+      xl    = "eza --long --git --group --all --sort=.name --sort=type";
       which = "which -a";
-      bip   = "echo bip";
     };
   };
 
