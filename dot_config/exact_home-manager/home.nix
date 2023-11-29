@@ -175,7 +175,7 @@ in
     # nixpkgs.diffoscope    
     nixpkgs.direnv
     nixpkgs.drone-cli
-    nixpkgs.exa  
+    nixpkgs.eza
     nixpkgs.fish
     nixpkgs.git
     nixpkgs.git-crypt
