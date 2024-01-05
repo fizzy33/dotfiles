@@ -155,7 +155,7 @@ in
       lsd   = "eza -FGlAhd";  #for use with find like `lsd (find .)` 
       mkdir = "mkdir -pv";
       mv    = "mv -iv";
-      xt    = "eza --long --git --group --tree";
+      xt    = "eza --long --git --group --tree -I .git";
       xl    = "eza --long --git --group --all --sort=.name --sort=type";
       which = "which -a";
     };
