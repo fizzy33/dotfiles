@@ -215,6 +215,7 @@ in
     # my-scala
     # my-sbt
     nixpkgs.silver-searcher
+    nixpkgs.tcping-go
     nixpkgs.tea
     nixpkgs.tmux
     nixpkgs.unzip
